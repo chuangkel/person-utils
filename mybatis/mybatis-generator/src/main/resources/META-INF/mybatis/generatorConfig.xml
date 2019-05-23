@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="META-INF/mybatis/generator.properties"/>
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="addGWTInterface" value="false"/>
+        <property name="suppressJavaInterface" value="false"/>
+
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--<plugin type="org.META-INF.META-INF.mapper.generator.plugins.GuavaStyleToStringPlugin"/>-->
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection
+                driverClass="${jdbc.driverClass}"
+                connectionURL="${jdbc.url}"
+                userId="${jdbc.username}"
+                password="${jdbc.password}">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+            <property name="useJava8Time" value="${jdk.use_jdk8_time}"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator
+                targetProject="../${module.domain}/src/generated/java"
+                targetPackage="${package.domain}">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <property name="constructorBased" value="false"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator
+                targetProject="../${module.dao}/src/main/resources"
+                targetPackage="META-INF/mybatis/mapper">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator
+                targetProject="../${module.dao}/src/main/java"
+                targetPackage="${package.mapper}"
+                type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="pms_ttrade_sum" domainObjectName="TradeSum"
+               enableSelectByExample="true"
+               enableCountByExample="true"
+               enableDeleteByExample="true"
+               enableUpdateByExample="true">
+            <property name="useActualColumnNames" value="false"/>
+            <property name="selectAllOrderByClause" value="client_id DESC"/>
+            <!--JDBC / SqlServer / MySql-->
+            <!--<generatedKey column="client_id" sqlStatement="MySql" identity="false"/>-->
+        </table>
+
+    </context>
+</generatorConfiguration>
