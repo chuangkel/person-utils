@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.chuangkel.dao.mapper.HolderTypeMapper">
+  <resultMap id="BaseResultMap" type="com.github.chuangkel.domain.entity.HolderType">
+    <result column="port_id" jdbcType="INTEGER" property="portId" />
+    <result column="business_date" jdbcType="INTEGER" property="businessDate" />
+    <result column="holder_type_name" jdbcType="VARCHAR" property="holderTypeName" />
+    <result column="holder_type" jdbcType="CHAR" property="holderType" />
+    <result column="share_ratio" jdbcType="DECIMAL" property="shareRatio" />
+    <result column="holding_amount" jdbcType="DECIMAL" property="holdingAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    port_id, business_date, holder_type_name, holder_type, share_ratio, holding_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample">
+    delete from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type (port_id, business_date, holder_type_name, 
+      holder_type, share_ratio, holding_amount
+      )
+    values (#{portId,jdbcType=INTEGER}, #{businessDate,jdbcType=INTEGER}, #{holderTypeName,jdbcType=VARCHAR}, 
+      #{holderType,jdbcType=CHAR}, #{shareRatio,jdbcType=DECIMAL}, #{holdingAmount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        port_id,
+      </if>
+      <if test="businessDate != null">
+        business_date,
+      </if>
+      <if test="holderTypeName != null">
+        holder_type_name,
+      </if>
+      <if test="holderType != null">
+        holder_type,
+      </if>
+      <if test="shareRatio != null">
+        share_ratio,
+      </if>
+      <if test="holdingAmount != null">
+        holding_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        #{portId,jdbcType=INTEGER},
+      </if>
+      <if test="businessDate != null">
+        #{businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="holderTypeName != null">
+        #{holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="holderType != null">
+        #{holderType,jdbcType=CHAR},
+      </if>
+      <if test="shareRatio != null">
+        #{shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="holdingAmount != null">
+        #{holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultType="java.lang.Integer">
+    select count(*) from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pms_holder_type
+    <set>
+      <if test="record.portId != null">
+        port_id = #{record.portId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessDate != null">
+        business_date = #{record.businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.holderTypeName != null">
+        holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holderType != null">
+        holder_type = #{record.holderType,jdbcType=CHAR},
+      </if>
+      <if test="record.shareRatio != null">
+        share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.holdingAmount != null">
+        holding_amount = #{record.holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pms_holder_type
+    set port_id = #{record.portId,jdbcType=INTEGER},
+      business_date = #{record.businessDate,jdbcType=INTEGER},
+      holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      holder_type = #{record.holderType,jdbcType=CHAR},
+      share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      holding_amount = #{record.holdingAmount,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <resultMap id="BaseResultMap" type="com.github.chuangkel.domain.entity.HolderType">
+    <result column="port_id" jdbcType="INTEGER" property="portId" />
+    <result column="business_date" jdbcType="INTEGER" property="businessDate" />
+    <result column="holder_type_name" jdbcType="VARCHAR" property="holderTypeName" />
+    <result column="holder_type" jdbcType="CHAR" property="holderType" />
+    <result column="share_ratio" jdbcType="DECIMAL" property="shareRatio" />
+    <result column="holding_amount" jdbcType="DECIMAL" property="holdingAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    port_id, business_date, holder_type_name, holder_type, share_ratio, holding_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample">
+    delete from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type (port_id, business_date, holder_type_name, 
+      holder_type, share_ratio, holding_amount
+      )
+    values (#{portId,jdbcType=INTEGER}, #{businessDate,jdbcType=INTEGER}, #{holderTypeName,jdbcType=VARCHAR}, 
+      #{holderType,jdbcType=CHAR}, #{shareRatio,jdbcType=DECIMAL}, #{holdingAmount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        port_id,
+      </if>
+      <if test="businessDate != null">
+        business_date,
+      </if>
+      <if test="holderTypeName != null">
+        holder_type_name,
+      </if>
+      <if test="holderType != null">
+        holder_type,
+      </if>
+      <if test="shareRatio != null">
+        share_ratio,
+      </if>
+      <if test="holdingAmount != null">
+        holding_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        #{portId,jdbcType=INTEGER},
+      </if>
+      <if test="businessDate != null">
+        #{businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="holderTypeName != null">
+        #{holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="holderType != null">
+        #{holderType,jdbcType=CHAR},
+      </if>
+      <if test="shareRatio != null">
+        #{shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="holdingAmount != null">
+        #{holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultType="java.lang.Integer">
+    select count(*) from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pms_holder_type
+    <set>
+      <if test="record.portId != null">
+        port_id = #{record.portId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessDate != null">
+        business_date = #{record.businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.holderTypeName != null">
+        holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holderType != null">
+        holder_type = #{record.holderType,jdbcType=CHAR},
+      </if>
+      <if test="record.shareRatio != null">
+        share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.holdingAmount != null">
+        holding_amount = #{record.holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pms_holder_type
+    set port_id = #{record.portId,jdbcType=INTEGER},
+      business_date = #{record.businessDate,jdbcType=INTEGER},
+      holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      holder_type = #{record.holderType,jdbcType=CHAR},
+      share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      holding_amount = #{record.holdingAmount,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <resultMap id="BaseResultMap" type="com.github.chuangkel.domain.entity.HolderType">
+    <result column="port_id" jdbcType="INTEGER" property="portId" />
+    <result column="business_date" jdbcType="INTEGER" property="businessDate" />
+    <result column="holder_type_name" jdbcType="VARCHAR" property="holderTypeName" />
+    <result column="holder_type" jdbcType="CHAR" property="holderType" />
+    <result column="share_ratio" jdbcType="DECIMAL" property="shareRatio" />
+    <result column="holding_amount" jdbcType="DECIMAL" property="holdingAmount" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    port_id, business_date, holder_type_name, holder_type, share_ratio, holding_amount
+  </sql>
+  <select id="selectByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample">
+    delete from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type (port_id, business_date, holder_type_name, 
+      holder_type, share_ratio, holding_amount
+      )
+    values (#{portId,jdbcType=INTEGER}, #{businessDate,jdbcType=INTEGER}, #{holderTypeName,jdbcType=VARCHAR}, 
+      #{holderType,jdbcType=CHAR}, #{shareRatio,jdbcType=DECIMAL}, #{holdingAmount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.chuangkel.domain.entity.HolderType">
+    insert into pms_holder_type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        port_id,
+      </if>
+      <if test="businessDate != null">
+        business_date,
+      </if>
+      <if test="holderTypeName != null">
+        holder_type_name,
+      </if>
+      <if test="holderType != null">
+        holder_type,
+      </if>
+      <if test="shareRatio != null">
+        share_ratio,
+      </if>
+      <if test="holdingAmount != null">
+        holding_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        #{portId,jdbcType=INTEGER},
+      </if>
+      <if test="businessDate != null">
+        #{businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="holderTypeName != null">
+        #{holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="holderType != null">
+        #{holderType,jdbcType=CHAR},
+      </if>
+      <if test="shareRatio != null">
+        #{shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="holdingAmount != null">
+        #{holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.github.chuangkel.domain.entity.HolderTypeExample" resultType="java.lang.Integer">
+    select count(*) from pms_holder_type
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pms_holder_type
+    <set>
+      <if test="record.portId != null">
+        port_id = #{record.portId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessDate != null">
+        business_date = #{record.businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.holderTypeName != null">
+        holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.holderType != null">
+        holder_type = #{record.holderType,jdbcType=CHAR},
+      </if>
+      <if test="record.shareRatio != null">
+        share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.holdingAmount != null">
+        holding_amount = #{record.holdingAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pms_holder_type
+    set port_id = #{record.portId,jdbcType=INTEGER},
+      business_date = #{record.businessDate,jdbcType=INTEGER},
+      holder_type_name = #{record.holderTypeName,jdbcType=VARCHAR},
+      holder_type = #{record.holderType,jdbcType=CHAR},
+      share_ratio = #{record.shareRatio,jdbcType=DECIMAL},
+      holding_amount = #{record.holdingAmount,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

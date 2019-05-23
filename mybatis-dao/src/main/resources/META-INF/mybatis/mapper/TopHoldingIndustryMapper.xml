@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.chuangkel.dao.mapper.TopHoldingIndustryMapper">
+  <resultMap id="BaseResultMap" type="com.github.chuangkel.domain.entity.TopHoldingIndustry">
+    <result column="port_id" jdbcType="INTEGER" property="portId" />
+    <result column="business_date" jdbcType="INTEGER" property="businessDate" />
+    <result column="industry_type_no" jdbcType="CHAR" property="industryTypeNo" />
+    <result column="benchmark_id" jdbcType="INTEGER" property="benchmarkId" />
+    <result column="industry_name_one" jdbcType="VARCHAR" property="industryNameOne" />
+    <result column="industry_code_one" jdbcType="INTEGER" property="industryCodeOne" />
+    <result column="asset_proportion" jdbcType="DECIMAL" property="assetProportion" />
+    <result column="benchmark_proportion" jdbcType="DECIMAL" property="benchmarkProportion" />
+    <result column="over_base_ratio" jdbcType="DECIMAL" property="overBaseRatio" />
+    <result column="rise_fall_ratio" jdbcType="DECIMAL" property="riseFallRatio" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    port_id, business_date, industry_type_no, benchmark_id, industry_name_one, industry_code_one, 
+    asset_proportion, benchmark_proportion, over_base_ratio, rise_fall_ratio
+  </sql>
+  <select id="selectByExample" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_top_holding_industry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustryExample">
+    delete from pms_top_holding_industry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustry">
+    insert into pms_top_holding_industry (port_id, business_date, industry_type_no, 
+      benchmark_id, industry_name_one, industry_code_one, 
+      asset_proportion, benchmark_proportion, over_base_ratio, 
+      rise_fall_ratio)
+    values (#{portId,jdbcType=INTEGER}, #{businessDate,jdbcType=INTEGER}, #{industryTypeNo,jdbcType=CHAR}, 
+      #{benchmarkId,jdbcType=INTEGER}, #{industryNameOne,jdbcType=VARCHAR}, #{industryCodeOne,jdbcType=INTEGER}, 
+      #{assetProportion,jdbcType=DECIMAL}, #{benchmarkProportion,jdbcType=DECIMAL}, #{overBaseRatio,jdbcType=DECIMAL}, 
+      #{riseFallRatio,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustry">
+    insert into pms_top_holding_industry
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        port_id,
+      </if>
+      <if test="businessDate != null">
+        business_date,
+      </if>
+      <if test="industryTypeNo != null">
+        industry_type_no,
+      </if>
+      <if test="benchmarkId != null">
+        benchmark_id,
+      </if>
+      <if test="industryNameOne != null">
+        industry_name_one,
+      </if>
+      <if test="industryCodeOne != null">
+        industry_code_one,
+      </if>
+      <if test="assetProportion != null">
+        asset_proportion,
+      </if>
+      <if test="benchmarkProportion != null">
+        benchmark_proportion,
+      </if>
+      <if test="overBaseRatio != null">
+        over_base_ratio,
+      </if>
+      <if test="riseFallRatio != null">
+        rise_fall_ratio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="portId != null">
+        #{portId,jdbcType=INTEGER},
+      </if>
+      <if test="businessDate != null">
+        #{businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="industryTypeNo != null">
+        #{industryTypeNo,jdbcType=CHAR},
+      </if>
+      <if test="benchmarkId != null">
+        #{benchmarkId,jdbcType=INTEGER},
+      </if>
+      <if test="industryNameOne != null">
+        #{industryNameOne,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCodeOne != null">
+        #{industryCodeOne,jdbcType=INTEGER},
+      </if>
+      <if test="assetProportion != null">
+        #{assetProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="benchmarkProportion != null">
+        #{benchmarkProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="overBaseRatio != null">
+        #{overBaseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="riseFallRatio != null">
+        #{riseFallRatio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustryExample" resultType="java.lang.Integer">
+    select count(*) from pms_top_holding_industry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pms_top_holding_industry
+    <set>
+      <if test="record.portId != null">
+        port_id = #{record.portId,jdbcType=INTEGER},
+      </if>
+      <if test="record.businessDate != null">
+        business_date = #{record.businessDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.industryTypeNo != null">
+        industry_type_no = #{record.industryTypeNo,jdbcType=CHAR},
+      </if>
+      <if test="record.benchmarkId != null">
+        benchmark_id = #{record.benchmarkId,jdbcType=INTEGER},
+      </if>
+      <if test="record.industryNameOne != null">
+        industry_name_one = #{record.industryNameOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryCodeOne != null">
+        industry_code_one = #{record.industryCodeOne,jdbcType=INTEGER},
+      </if>
+      <if test="record.assetProportion != null">
+        asset_proportion = #{record.assetProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.benchmarkProportion != null">
+        benchmark_proportion = #{record.benchmarkProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="record.overBaseRatio != null">
+        over_base_ratio = #{record.overBaseRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="record.riseFallRatio != null">
+        rise_fall_ratio = #{record.riseFallRatio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pms_top_holding_industry
+    set port_id = #{record.portId,jdbcType=INTEGER},
+      business_date = #{record.businessDate,jdbcType=INTEGER},
+      industry_type_no = #{record.industryTypeNo,jdbcType=CHAR},
+      benchmark_id = #{record.benchmarkId,jdbcType=INTEGER},
+      industry_name_one = #{record.industryNameOne,jdbcType=VARCHAR},
+      industry_code_one = #{record.industryCodeOne,jdbcType=INTEGER},
+      asset_proportion = #{record.assetProportion,jdbcType=DECIMAL},
+      benchmark_proportion = #{record.benchmarkProportion,jdbcType=DECIMAL},
+      over_base_ratio = #{record.overBaseRatio,jdbcType=DECIMAL},
+      rise_fall_ratio = #{record.riseFallRatio,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.github.chuangkel.domain.entity.TopHoldingIndustryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_top_holding_industry
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
