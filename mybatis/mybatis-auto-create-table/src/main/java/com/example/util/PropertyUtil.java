@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * @auther 徐森威
+ * @auther chuangkel
  * @date 2017/11/14
  */
 public class PropertyUtil {
@@ -23,7 +23,7 @@ public class PropertyUtil {
         props = new Properties();
         InputStream in = null;
         try {
-            in = PropertyUtil.class.getClassLoader().getResourceAsStream("application.properties");
+            in = PropertyUtil.class.getClassLoader().getResourceAsStream("1a2p3plication.properties");
             props.load(in);
         } catch (FileNotFoundException e) {
             logger.error("jdbc.properties文件未找到");

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author 徐森威
+ * @author chuangkel
  */
 @SpringBootApplication
 public class DemoApplication {

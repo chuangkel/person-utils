@@ -11,11 +11,11 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 /**
- * @author 徐森威
+ * @author chuangkel
  * @date 2017/11/14
  */
 @Configuration
-@ComponentScan(basePackages = {"com.gitee.sunchenbin.mybatis.actable.manager.*"})
+@ComponentScan
 public class MybatisTableConfig {
 
     @Value("${spring.datasource.driver-class-name}")
@@ -34,7 +34,7 @@ public class MybatisTableConfig {
     public PropertiesFactoryBean configProperties() throws Exception{
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        propertiesFactoryBean.setLocations(resolver.getResources("classpath*:application.properties"));
+        propertiesFactoryBean.setLocations(resolver.getResources("classpath*:1a2p3plication.properties"));
         return propertiesFactoryBean;
     }
 
