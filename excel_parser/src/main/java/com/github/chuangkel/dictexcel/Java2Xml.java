@@ -16,31 +16,26 @@ import java.util.Map;
  **/
 public class Java2Xml {
 
-
-    public static void main(String[] args) {
-
-//        java2Xml();
-    }
-
     public static void java2Xml(Map<String, DictDTO> map){
 
         List<Map.Entry<String,DictDTO>> list = new ArrayList<>(map.entrySet());
-        list.sort(new Comparator<Map.Entry<String, DictDTO>>() {
-            @Override
-            public int compare(Map.Entry<String, DictDTO> o1, Map.Entry<String, DictDTO> o2) {
-                char[] s1 = o1.getKey().toCharArray();
-                char[] s2 =  o2.getKey().toCharArray();
-                int i = 0;
-                while (i < s1.length && i < s2.length){
-                    if(s1[i] < s2[i]) return -1;
-                    if(s1[i] > s2[i]) return 1;
-                    i++;
-                }
-                if(s1.length > s2.length){
+        list.sort((o1,o2)->{
+            char[] s1 = o1.getKey().toCharArray();
+            char[] s2 =  o2.getKey().toCharArray();
+            int i = 0;
+            while (i < s1.length && i < s2.length){
+                if(s1[i] < s2[i]) {
                     return -1;
                 }
-                return 1;
+                if(s1[i] > s2[i]) {
+                    return 1;
+                }
+                i++;
             }
+            if(s1.length > s2.length){
+                return -1;
+            }
+            return 1;
         });
         StringBuilder itemsSb = new StringBuilder();
         itemsSb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
