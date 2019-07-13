@@ -1,14 +1,14 @@
 package com.github.security.springsecurity.service;
 
-import com.github.security.springsecurity.model.Login;
-import com.github.security.springsecurity.model.SysRole;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+        import com.github.security.springsecurity.model.Login;
+        import com.github.security.springsecurity.model.SysRole;
+        import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+        import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+        import javax.annotation.Resource;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Optional;
 
 /**
  * @program: personal-utils
@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 public class LoginService {
     //@Resource
-    private BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();  //注入bcryct加密
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();  //注入bcryct加密
 
     public Login findByUsername(String username) {
         Login login = new Login();
@@ -27,7 +27,7 @@ public class LoginService {
         login.setUsername(username);
         login.setPassword(bCryptPasswordEncoder.encode("123"));
 
-        List<SysRole> list =  new ArrayList<>();
+        List<SysRole> list = new ArrayList<>();
         SysRole sysRole = new SysRole();
         sysRole.setName("hello");
         list.add(sysRole);

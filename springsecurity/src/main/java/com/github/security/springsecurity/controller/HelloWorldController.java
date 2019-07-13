@@ -10,9 +10,10 @@ package com.github.security.springsecurity.controller;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 @RestController
 public class HelloWorldController {
-    @RequestMapping({ "/hello" })
+    @RequestMapping({"/hello"})
     @PreAuthorize("authenticated and hasPermission('hello', 'view')")
     //@PreAuthorize("hasRole('view')")
     public String firstPage() {

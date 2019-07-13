@@ -19,7 +19,7 @@ public class RoleService {
 
 
     public List<SysRole> getRoles(Integer id) {
-        List<SysRole> list =  new ArrayList<>();
+        List<SysRole> list = new ArrayList<>();
         SysRole sysRole = new SysRole();
         sysRole.setName("hello");
         list.add(sysRole);

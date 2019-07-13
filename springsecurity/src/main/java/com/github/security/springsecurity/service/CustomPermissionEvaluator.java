@@ -6,6 +6,7 @@ package com.github.security.springsecurity.service;
  * @author: chuangkel
  * @create: 2019-07-12 11:04
  **/
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,14 +23,16 @@ import org.springframework.security.core.GrantedAuthority;
 @Configuration
 public class CustomPermissionEvaluator implements PermissionEvaluator {
     private static final Logger log = LoggerFactory.getLogger(CustomPermissionEvaluator.class);
+
     //普通的targetDomainObject判断
     @Override
     public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
         log.error("-------------------------------------");
         Collection<? extends GrantedAuthority> collection = authentication.getAuthorities();
-        List<String> list = collection.stream().map(a->a.getAuthority()).collect(Collectors.toList());
+        List<String> list = collection.stream().map(a -> a.getAuthority()).collect(Collectors.toList());
         return list.contains(permission);
     }
+
     //用于ACL的访问控制
     @Override
     public boolean hasPermission(Authentication authentication, Serializable targetId, String targetType, Object permission) {
