@@ -1,10 +1,13 @@
 package com.github.security.springsecurity.service;
 
 import com.github.security.springsecurity.model.Login;
+import com.github.security.springsecurity.model.SysRole;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,6 +27,14 @@ public class LoginService {
         login.setUsername(username);
         login.setPassword(bCryptPasswordEncoder.encode("123"));
 
+        List<SysRole> list =  new ArrayList<>();
+        SysRole sysRole = new SysRole();
+        sysRole.setName("hello");
+        list.add(sysRole);
+
+        SysRole sysRole1 = new SysRole();
+        sysRole1.setName("view");
+        list.add(sysRole1);
         return login;
     }
 }
